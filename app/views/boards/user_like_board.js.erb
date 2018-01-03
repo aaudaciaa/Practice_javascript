@@ -1,0 +1,11 @@
+// 좋아요 기능
+alert("좋아요 버튼 누름");
+$('.like').toggleClass('btn-outline-primary btn-primary');
+var like_count = parseInt($('#like-count').text());
+if(<%= @like.frozen? %>) { // 데이터가 destroy되면 db에서는 날아가지만 메모리에서 바로 삭제가 되는 것이 아니라 얼려버려서 사용할 수 없게 만드는 것이다.
+                           // 여기서 frozen? 이러고 묻는 것은 삭제했냐고 묻는 것이다.
+  $('#like-count').text(like_count - 1);
+}
+else { // 좋아요를 눌른 상태니?
+  $('#like-count').text(like_count + 1);
+}
