@@ -1,10 +1,41 @@
 <%= form_tag(signup_path, method: 'POST', class: "form-signin") do %>
   <h2 class="form-signin-heading">Please sign up</h2>
   <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" name="email" class="form-control" placeholder="Email address" autofocus>
+  <input type="email" name="email" class="form-control" placeholder="Email address" autofocus required>
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" name="password" class="form-control" placeholder="Password">
   <label for="inputPassword" class="sr-only">Password Confirmation</label>
   <input type="password"  name="password_confirmation" class="form-control" placeholder="Password Confirmation">
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+  <button class="btn btn-lg btn-primary btn-block" type="submit" disabled>Sign up</button>
+<% end %>
+
+
+<% content_for :script do %>
+  <script>
+    $(function() {
+      $('input[name=email]').on('change', function() {
+        var id = $(this).val();
+        $.ajax({
+          url: '/check_email',
+          method: 'POST',
+          data: {
+            email: id
+          }
+        })
+      })
+
+      $('input[name=password_confirmation]').on('change', function() {
+        var pw_confir = $(this).val();
+        var pw = $('input[name=password]').val();
+        $.ajax({
+          url: '/check_password',
+          method: 'POST',
+          data: {
+            password: pw,
+            password_confirmation: pw_confir
+          }
+        })
+      })
+    })
+  </script>
 <% end %>

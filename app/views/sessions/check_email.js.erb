@@ -1,0 +1,17 @@
+if(<%= !@tmp.empty? %>){
+  if(<%= @email %>){
+    // 해당 이메일로 가입한 유저가 없는 경우
+    alert("가입가능한 이메일 입니다.");
+    $('button[type=submit]').removeAttr('disabled');
+  }
+  else {
+    // 해당 이메일로 가입한 유저가 있는 경우
+    alert("이미 존재하는 이메일 입니다.");
+    $('button[type=submit]').attr('disabled', 'disabled');
+  }
+}
+else{
+  // 이메일을 입력하지 않았을 경우
+  alert("이메일 입력은 필수입니다.");
+  $('button[type=submit]').attr('disabled', 'disabled');
+}

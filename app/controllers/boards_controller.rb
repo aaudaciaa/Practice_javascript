@@ -5,13 +5,21 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.all
+    @boards = Board.order("created_at DESC").page(params[:page]) # page는 kaminari가 제공하는 메소드?이다. 홈에서 url뒤에 ?page=2 이런식으로 하면 다음 페이지로 넘어간다.
+  end
+
+  def page_scroll
+    @boards = Board.order("created_at DESC").page(params[:page])
   end
 
   # GET /boards/1
   # GET /boards/1.json
   def show
-    @like = Like.where(user_id: current_user.id, board_id: params[:id])
+    if user_signed_in?
+      @like = Like.where(user_id: current_user.id, board_id: params[:id])
+    else
+      @like = []
+    end
   end
 
   # GET /boards/new
@@ -98,6 +106,13 @@ class BoardsController < ApplicationController
         format.js
       end
     end
+  end
+
+  def update_comment
+    @comment = Comment.find(params[:comment_id])
+    @comment.update(
+      contents: params[:contents]
+    )
   end
 
   private

@@ -29,9 +29,9 @@
 // }
 
 // 위의 내용을 jquery로 작성
-$(document).ready(function() { // == $(fucntion(){})
-  // var tr = document.getElementsByClassName('content');
-  $('.content').click(function() {
-    location.href = '/boards/' + $(this).data('id'); // $(this).data('id') == $(this).attr('data-id')
-  })
-})
+// $(document).ready(function() { // == $(fucntion(){})
+//   // var tr = document.getElementsByClassName('content');
+//   $('.table').on('click', '.board', function() {
+//     location.href = '/boards/' + $(this).data('id'); // $(this).data('id') == $(this).attr('data-id')
+//   })
+// })

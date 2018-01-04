@@ -1,2 +1,2 @@
 alert("댓글 삭제 요청이 왔어요!!!");
-$("#comment-<%= @comment.id %>").remove();
+$("#comment-<%= @comment.id %>").fadeOut().remove(); // 내용물을 잠시 숨겨두는 것은 hide() / 다이나믹하게 사라지게 하는 것은 fadeOut()

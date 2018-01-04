@@ -16,6 +16,18 @@ class SessionsController < ApplicationController
     end
   end
 
+  # 이메일 유효성 검사
+  def check_email
+    @tmp = params[:email]
+    @email = User.find_by(email: params[:email]).nil?
+  end
+
+  # password와 password_confirmation이 같은지 확인
+  def check_password
+    @pw = params[:password]
+    @pw_confir = params[:password_confirmation]
+  end
+
   # 로그인
   def signin #로그인 화면이 보여짐
   end
